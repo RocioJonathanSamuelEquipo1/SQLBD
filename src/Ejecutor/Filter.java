@@ -148,7 +148,7 @@ public class Filter extends javax.swing.JFrame {
             DaoArticulo nda = new DaoArticulo();
             persons=nda.buscarArticulos();
 
-                Criteria female = new CriteriaFemale();
+            Criteria female = new CriteriaFemale();
 
           System.out.println("\nFemales: ");
       printPersons(female.meetCriteria(persons));
