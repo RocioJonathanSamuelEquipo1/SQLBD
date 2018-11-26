@@ -12,6 +12,7 @@ import concrete.AndCriteria;
 import concrete.CriteriaFemale;
 import concrete.CriteriaMale;
 import concrete.CriteriaSingle;
+import concrete.MarriedCriteria;
 import concrete.OrCriteria;
 import entidad.Person;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class Filter extends javax.swing.JFrame {
         btnSingleMales = new javax.swing.JButton();
         btnSingleFemales = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnMarried = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +86,13 @@ public class Filter extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Filtrar por:");
 
+        btnMarried.setText("Married");
+        btnMarried.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMarriedActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,12 +108,17 @@ public class Filter extends javax.swing.JFrame {
                     .addComponent(btnSingleFemales))
                 .addGap(86, 86, 86))
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel2)))
+                        .addGap(86, 86, 86)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel2))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(btnMarried)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -118,7 +132,9 @@ public class Filter extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMales)
                     .addComponent(btnFemales))
-                .addGap(58, 58, 58)
+                .addGap(17, 17, 17)
+                .addComponent(btnMarried)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSingleFemales)
                     .addComponent(btnSingleMales))
@@ -140,7 +156,8 @@ public class Filter extends javax.swing.JFrame {
       Criteria single = new CriteriaSingle();
       Criteria singleMale = new AndCriteria(single, male);
       Criteria singleOrFemale = new OrCriteria(single, female);
-
+   Criteria married = new MarriedCriteria();
+      
             System.out.println("Males: ");
             printPersons(male.meetCriteria(persons));
 
@@ -162,6 +179,7 @@ public class Filter extends javax.swing.JFrame {
       Criteria single = new CriteriaSingle();
       Criteria singleMale = new AndCriteria(single, male);
       Criteria singleOrFemale = new OrCriteria(single, female);
+         Criteria married = new MarriedCriteria();
 
           System.out.println("\nFemales: ");
       printPersons(female.meetCriteria(persons));
@@ -184,6 +202,7 @@ public class Filter extends javax.swing.JFrame {
       Criteria single = new CriteriaSingle();
       Criteria singleMale = new AndCriteria(single, male);
       Criteria singleOrFemale = new OrCriteria(single, female);
+         Criteria married = new MarriedCriteria();
 
          System.out.println("\nSingle Males: ");
       printPersons(singleMale.meetCriteria(persons));
@@ -207,6 +226,7 @@ public class Filter extends javax.swing.JFrame {
       Criteria single = new CriteriaSingle();
       Criteria singleMale = new AndCriteria(single, male);
       Criteria singleOrFemale = new OrCriteria(single, female);
+       Criteria married = new MarriedCriteria();
 
         System.out.println("\nSingle Or Females: ");
       printPersons(singleOrFemale.meetCriteria(persons));
@@ -215,6 +235,29 @@ public class Filter extends javax.swing.JFrame {
             Logger.getLogger(Filter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSingleFemalesActionPerformed
+
+    private void btnMarriedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarriedActionPerformed
+        // TODO add your handling code here:
+          try {
+            // TODO add your handling code here:
+            List<Person> persons= new ArrayList<Person>();
+            DaoArticulo nda = new DaoArticulo();
+            persons=nda.buscarArticulos();
+            
+            Criteria male = new CriteriaMale();
+            Criteria female = new CriteriaFemale();
+            Criteria single = new CriteriaSingle();
+            Criteria singleMale = new AndCriteria(single, male);
+            Criteria singleOrFemale = new OrCriteria(single, female);
+              Criteria married = new MarriedCriteria();
+              
+            System.out.println("Married: ");
+            printPersons(married.meetCriteria(persons));
+          
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Filter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnMarriedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,6 +297,7 @@ public class Filter extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFemales;
     private javax.swing.JButton btnMales;
+    private javax.swing.JButton btnMarried;
     private javax.swing.JButton btnSingleFemales;
     private javax.swing.JButton btnSingleMales;
     private javax.swing.JLabel jLabel1;
