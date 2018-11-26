@@ -81,7 +81,7 @@ public class DaoArticulo extends Configuracion {
       
     public static void printPersons(List<Person> persons){
             for (Person product : persons) {
-                System.out.println("Persona : [nombre: "+product.getName()+" Genero "+product.getGender()+" Estado marital"+product.getMaritalStatus());
+                System.out.println("Persona : [nombre: "+product.getName()+" Genero "+product.getGender()+" Estado marital "+product.getMaritalStatus());
         }
         }
     
