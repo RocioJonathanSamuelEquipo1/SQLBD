@@ -8,6 +8,11 @@ package Ejecutor;
 import Conexion.DaoArticulo;
 import static Conexion.DaoArticulo.printPersons;
 import Criteria.Criteria;
+import concrete.AndCriteria;
+import concrete.CriteriaFemale;
+import concrete.CriteriaMale;
+import concrete.CriteriaSingle;
+import concrete.OrCriteria;
 import entidad.Person;
 import java.util.ArrayList;
 import java.util.List;
@@ -130,7 +135,11 @@ public class Filter extends javax.swing.JFrame {
             DaoArticulo nda = new DaoArticulo();
             persons=nda.buscarArticulos();
 
-            Criteria male = new CriteriaMale();
+             Criteria male = new CriteriaMale();
+      Criteria female = new CriteriaFemale();
+      Criteria single = new CriteriaSingle();
+      Criteria singleMale = new AndCriteria(single, male);
+      Criteria singleOrFemale = new OrCriteria(single, female);
 
             System.out.println("Males: ");
             printPersons(male.meetCriteria(persons));
@@ -148,7 +157,11 @@ public class Filter extends javax.swing.JFrame {
             DaoArticulo nda = new DaoArticulo();
             persons=nda.buscarArticulos();
 
-            Criteria female = new CriteriaFemale();
+             Criteria male = new CriteriaMale();
+      Criteria female = new CriteriaFemale();
+      Criteria single = new CriteriaSingle();
+      Criteria singleMale = new AndCriteria(single, male);
+      Criteria singleOrFemale = new OrCriteria(single, female);
 
           System.out.println("\nFemales: ");
       printPersons(female.meetCriteria(persons));
@@ -166,7 +179,11 @@ public class Filter extends javax.swing.JFrame {
             DaoArticulo nda = new DaoArticulo();
             persons=nda.buscarArticulos();
 
-           Criteria singleMale = new AndCriteria(single, male);
+             Criteria male = new CriteriaMale();
+      Criteria female = new CriteriaFemale();
+      Criteria single = new CriteriaSingle();
+      Criteria singleMale = new AndCriteria(single, male);
+      Criteria singleOrFemale = new OrCriteria(single, female);
 
          System.out.println("\nSingle Males: ");
       printPersons(singleMale.meetCriteria(persons));
@@ -185,7 +202,11 @@ public class Filter extends javax.swing.JFrame {
             DaoArticulo nda = new DaoArticulo();
             persons=nda.buscarArticulos();
 
-           Criteria singleOrFemale = new OrCriteria(single, female);
+        Criteria male = new CriteriaMale();
+      Criteria female = new CriteriaFemale();
+      Criteria single = new CriteriaSingle();
+      Criteria singleMale = new AndCriteria(single, male);
+      Criteria singleOrFemale = new OrCriteria(single, female);
 
         System.out.println("\nSingle Or Females: ");
       printPersons(singleOrFemale.meetCriteria(persons));
